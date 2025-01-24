@@ -1,0 +1,44 @@
+services:
+  mysqldb:
+    image: mysql:8.4.3
+    container_name: 'mysql-spring-crud'
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'springboot_demo_db'
+      MYSQL_USER: 'db_user'
+      MYSQL_PASSWORD: 'db_password'
+      MYSQL_ROOT_PASSWORD: 'db_password'
+    networks:
+      - spring_demo_network
+    ports:
+      - '3306:3306' # Exponer puerto 3306 para acceder desde el host
+    expose:
+      - '3306' # Exponer el puerto dentro de la red de contenedores
+    volumes:
+      - spring-crud-data:/var/lib/mysql # Persistencia de datos
+
+  springboot-app:
+    image: spring-demo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-demo-app-container
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_HOST: 'mysql-spring-crud'
+      DB_PORT: 3306
+      DB_NAME: springboot_demo_db
+      DB_USER: db_user
+      DB_PASSWORD: db_password
+    networks:
+      - spring_demo_network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+volumes:
+  spring-crud-data: # Definición del volumen para persistir los datos de MySQL
+
+networks:
+  spring_demo_network:
+    driver: bridge # Usar red en modo 'bridge' para la comunicación entre contenedores
