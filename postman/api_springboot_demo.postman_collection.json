@@ -1,0 +1,2070 @@
+{
+	"info": {
+		"_postman_id": "c7f8940d-f2aa-4d15-8f84-c43bc8cce894",
+		"name": "API Springboot demo",
+		"description": "# 🚀 Get started here\n\nThis documentation provides details on how to interact with API endpoints using Postman.\n\n## 🔖 Endpoints\n\n## Category\n\n### 1\\. Get all Categories\n\n**Endpoint:** `/category`  \n**Method:** `GET`  \n**Description:** Retrieve a paginated list of all categories.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `page` (optional, default 0) – Page number.\n        \n    - `size` (optional, default 20) – Number of items per page.\n        \n    - `sort` (optional) – Sort fields, e.g., `name,desc,id,asc`.\n        \n\n### 2\\. Get Category by ID\n\n**Endpoint:** `/category/{id}`  \n**Method:** `GET`  \n**Description:** Retrieve details of a specific category by its ID.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `id` (Path variable) – The ID of the category.\n        \n\n### 3\\. Search Categories by Name\n\n**Endpoint:** `/category/search`  \n**Method:** `GET`  \n**Description:** Search categories by name.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `name` (Query parameter) – The name of the category to search.\n        \n    - `page`, `size`, `sort` (optional, default as above).\n        \n\n### 4\\. Create Category\n\n**Endpoint:** `/category`  \n**Method:** `POST`  \n**Description:** Create a new category.\n\n#### Request:\n\n- **Body:**\n    \n\n``` json\n{\n  \"name\": \"New Category\"\n}\n\n ```\n\n### 5\\. Update Category\n\n**Endpoint:** `/category/{id}`  \n**Method:** `PUT`  \n**Description:** Update an existing category by ID.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `id` (Path variable) – The ID of the category to update.\n        \n- **Body:**\n    \n\n``` json\n{\n  \"name\": \"Updated Category\"\n}\n﻿\n\n ```\n\n### 6\\. Delete Category\n\n**Endpoint:** `/category/{id}`  \n**Method:** `DELETE`  \n**Description:** Delete a category by ID.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `id` (Path variable) – The ID of the category to delete.\n        \n\n## Topic\n\n### 1\\. Get all Topics\n\n**Endpoint:** `/topic`  \n**Method:** `GET`  \n**Description:** Retrieve a paginated list of all topics.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `page`, `size`, `sort` (optional, default as above).\n        \n\n### 2\\. Get Topic by ID\n\n**Endpoint:** `/topic/{id}`  \n**Method:** `GET`  \n**Description:** Retrieve details of a specific topic by its ID.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `id` (Path variable) – The ID of the topic.\n        \n\n### 3\\. Get Topics by Category ID\n\n**Endpoint:** `/topic/category/{id}`  \n**Method:** `GET`  \n**Description:** Retrieve a list of topics belonging to a specific category.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `id` (Path variable) – The ID of the category.\n        \n\n### 4\\. Search Topics by Title\n\n**Endpoint:** `/topic/search`  \n**Method:** `GET`  \n**Description:** Search topics by title.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `title` (Query parameter) – The title to search for.\n        \n    - `page`, `size`, `sort` (optional, default as above).\n        \n\n### 5\\. Create Topic\n\n**Endpoint:** `/topic`  \n**Method:** `POST`  \n**Description:** Create a new topic.\n\n#### Request:\n\n- **Body:**\n    \n\n``` json\n{\n  \"title\": \"New Topic\",\n  \"categoryId\": 1\n}\n\n ```\n\n### 6\\. Update Topic\n\n**Endpoint:** `/topic/{id}`  \n**Method:** `PUT`  \n**Description:** Update an existing topic by ID.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `id` (Path variable) – The ID of the topic to update.\n        \n- **Body:**\n    \n\n``` json\n{\n  \"title\": \"Updated Topic\"\n}\n\n ```\n\n### 7\\. Delete Topic\n\n**Endpoint:** `/topic/{id}`  \n**Method:** `DELETE`  \n**Description:** Delete a topic by ID.\n\n#### Request:\n\n- **Parameters:**\n    \n    - `id` (Path variable) – The ID of the topic to delete.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41280200"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "New Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"category_id\", jsonData[\"id\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Lorem {{$randomAbbreviation}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"category"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": [
+						{
+							"name": "201 - New Category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"New category\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:45:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 155,\n    \"name\": \"New category\",\n    \"createdAt\": \"23.01.2025\"\n}"
+						},
+						{
+							"name": "400 - Payload not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:46:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"body\",\n    \"message\": \"Payload not found\"\n}"
+						},
+						{
+							"name": "400 - Name must not be blank",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:47:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"field\": \"name\",\n        \"message\": \"size must be between 1 and 50\"\n    },\n    {\n        \"field\": \"name\",\n        \"message\": \"must not be blank\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/category?page=0&size=3&sort=name,asc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Int page number default page 0"
+								},
+								{
+									"key": "size",
+									"value": "3",
+									"description": "Int page size 50 default"
+								},
+								{
+									"key": "sort",
+									"value": "name,asc",
+									"description": "Sort by name [DESC] and id [ASC]"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": [
+						{
+							"name": "200 - Get categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/category?page=0&size=50&sort=name",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Int page number default page 0"
+										},
+										{
+											"key": "size",
+											"value": "50",
+											"description": "Int page size 50 default"
+										},
+										{
+											"key": "sort",
+											"value": "name",
+											"description": "Sort by name [DESC] and id [ASC]"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:29:13 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 4,\n            \"name\": \"Education\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Entertainment\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Finance\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Food\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Health\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Lifestyle\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Science\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Sports\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Technology\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Travel\",\n            \"createdAt\": \"23.01.2025\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 50,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 10,\n    \"first\": true,\n    \"size\": 50,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"numberOfElements\": 10,\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Get category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/category/{{category_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"category",
+								"{{category_id}}"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": [
+						{
+							"name": "200 - Get category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/category/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 00:23:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Technology\",\n    \"createdAt\": \"23.01.2025\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Filter category by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/category/search?name=Technology&page=0&size=5&sort=name",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"category",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Technology",
+									"description": "String filter name"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Int page number default page 0"
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"description": "Int size number default 50"
+								},
+								{
+									"key": "sort",
+									"value": "name",
+									"description": "Sort by name [DESC] and id , createdAt[ASC]"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Filter category by name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/category/search?name=Technology&page=0&size=50&sort=name",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"search"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Technology",
+											"description": "String filter name"
+										},
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Int page number default page 0"
+										},
+										{
+											"key": "size",
+											"value": "50",
+											"description": "Int size number default 50"
+										},
+										{
+											"key": "sort",
+											"value": "name",
+											"description": "Sort by name [DESC] and id , createdAt[ASC]"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:33:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 19,\n            \"name\": \"Biotechnology\",\n            \"createdAt\": \"10.04.2024\"\n        },\n        {\n            \"id\": 14,\n            \"name\": \"Blockchain Technology\",\n            \"createdAt\": \"05.01.2024\"\n        },\n        {\n            \"id\": 31,\n            \"name\": \"Green Technology\",\n            \"createdAt\": \"10.03.2024\"\n        },\n        {\n            \"id\": 47,\n            \"name\": \"Nanotechnology\",\n            \"createdAt\": \"15.04.2024\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Technology\",\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Wearable Technology\",\n            \"createdAt\": \"30.11.2023\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 50,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 6,\n    \"first\": true,\n    \"size\": 50,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"numberOfElements\": 6,\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Update category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"New categor Update {{$randomAbbreviation}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/category/{{category_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"category",
+								"{{category_id}}"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": [
+						{
+							"name": "200 - Update category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"New categor Update\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category/155",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"155"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:48:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 155,\n    \"name\": \"New categor Update\",\n    \"createdAt\": \"23.01.2025\"\n}"
+						},
+						{
+							"name": "400 - Payload not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category/155",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"155"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:48:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"body\",\n    \"message\": \"Payload not found\"\n}"
+						},
+						{
+							"name": "400 - Name must no be blank",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category/155",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"155"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:49:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Error en el servido. \\n400 BAD_REQUEST \\\"Validation failure\\\"\"\n}"
+						},
+						{
+							"name": "400 - Category not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"New categor Update\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category/6781",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"6781"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:52:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Category not found by id 6781\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/category/{{category_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"category",
+								"{{category_id}}"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": [
+						{
+							"name": "200 - Delete category",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category/155",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"155"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:53:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 155,\n    \"name\": \"New categor Update\",\n    \"createdAt\": \"23.01.2025\"\n}"
+						},
+						{
+							"name": "400 - Category not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/category/155",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category",
+										"155"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 02:53:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Category not found by id 155\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Topics",
+			"item": [
+				{
+					"name": "New Topic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"topic_id\", jsonData[\"id\"]);",
+									"pm.environment.set(\"category_id\", jsonData[\"category\"][\"id\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Lorem Ipsum\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500\",\n    \"rating\": 2.3,\n    \"views\":671,\n    \"categoryId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/topic",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"topic"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 - New topic",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lorem Ipsum\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 2.3,\n    \"views\": 0,\n    \"categoryId\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:29:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 56,\n    \"title\": \"Lorem Ipsum\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 2.3,\n    \"views\": 0,\n    \"category\": {\n        \"id\": 2,\n        \"name\": \"Health\",\n        \"createdAt\": \"23.01.2025\"\n    },\n    \"createdAt\": \"23.01.2025\"\n}"
+						},
+						{
+							"name": "400 - Views must not be null",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lorem Ipsum\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 2.3,\n    \"categoryId\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:30:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"field\": \"views\",\n        \"message\": \"must not be null\"\n    }\n]"
+						},
+						{
+							"name": "400 - Payload not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:31:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"body\",\n    \"message\": \"Payload not found\"\n}"
+						},
+						{
+							"name": "400 - Category not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lorem Ipsum\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500\",\n    \"rating\": 2.3,\n    \"views\":671,\n    \"categoryId\": 200\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:32:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Category not found by id 200\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get topics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/topic?page=0&size=3&sort=views,desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"topic"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Int page number default page 0"
+								},
+								{
+									"key": "size",
+									"value": "3",
+									"description": "Int page size 50 default"
+								},
+								{
+									"key": "sort",
+									"value": "views,desc",
+									"description": "Sort by id, views, createdAt [DESC] and id, title [ASC]"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Get topics",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic?page=0&sort=views,desc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Int page number default page 0"
+										},
+										{
+											"key": "size",
+											"value": "50",
+											"description": "Int page size 50 default",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "views,desc",
+											"description": "Sort by id, views, createdAt [DESC] and id, title [ASC]"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:08:54 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 5,\n            \"title\": \"World Cup 2023 Highlights\",\n            \"description\": \"Top moments from the 2023 World Cup.\",\n            \"rating\": 4.6,\n            \"views\": 2000,\n            \"category\": {\n                \"id\": 5,\n                \"name\": \"Sports\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Top 10 Movies of 2024\",\n            \"description\": \"A list of must-watch movies this year.\",\n            \"rating\": 4.2,\n            \"views\": 1500,\n            \"category\": {\n                \"id\": 6,\n                \"name\": \"Entertainment\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 1,\n            \"title\": \"AI Revolution\",\n            \"description\": \"Discussion on how AI is transforming industries.\",\n            \"rating\": 4.8,\n            \"views\": 1250,\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Technology\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"Astronomy: The Next Frontier\",\n            \"description\": \"What lies ahead for the study of space.\",\n            \"rating\": 4.9,\n            \"views\": 1220,\n            \"category\": {\n                \"id\": 142,\n                \"name\": \"Astronomy\",\n                \"createdAt\": \"25.11.2023\"\n            },\n            \"createdAt\": \"05.11.2024\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Space Exploration\",\n            \"description\": \"Advances in exploring the final frontier.\",\n            \"rating\": 4.9,\n            \"views\": 1150,\n            \"category\": {\n                \"id\": 3,\n                \"name\": \"Science\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 15,\n            \"title\": \"AI-Powered Neural Networks\",\n            \"description\": \"Applications of neural networks in modern AI.\",\n            \"rating\": 4.8,\n            \"views\": 1150,\n            \"category\": {\n                \"id\": 144,\n                \"name\": \"Artificial Neural Networks\",\n                \"createdAt\": \"08.12.2023\"\n            },\n            \"createdAt\": \"25.12.2024\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"3D Printing in Medicine\",\n            \"description\": \"How 3D printing is revolutionizing healthcare.\",\n            \"rating\": 4.7,\n            \"views\": 1120,\n            \"category\": {\n                \"id\": 112,\n                \"name\": \"3D Printing\",\n                \"createdAt\": \"18.03.2024\"\n            },\n            \"createdAt\": \"10.04.2024\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Best Travel Destinations\",\n            \"description\": \"The top places to visit this year.\",\n            \"rating\": 4.8,\n            \"views\": 1100,\n            \"category\": {\n                \"id\": 7,\n                \"name\": \"Travel\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 52,\n            \"title\": \"Space Tourism for All\",\n            \"description\": \"Making space travel accessible.\",\n            \"rating\": 4.9,\n            \"views\": 1100,\n            \"category\": {\n                \"id\": 129,\n                \"name\": \"Space Tourism\",\n                \"createdAt\": \"29.10.2023\"\n            },\n            \"createdAt\": \"25.01.2025\"\n        },\n        {\n            \"id\": 20,\n            \"title\": \"Biotechnology in Cancer Treatment\",\n            \"description\": \"Innovations in biotech for oncology.\",\n            \"rating\": 4.8,\n            \"views\": 1100,\n            \"category\": {\n                \"id\": 115,\n                \"name\": \"Biotechnology\",\n                \"createdAt\": \"10.04.2024\"\n            },\n            \"createdAt\": \"18.12.2024\"\n        },\n        {\n            \"id\": 48,\n            \"title\": \"The Psychology of Happiness\",\n            \"description\": \"Understanding what makes us happy.\",\n            \"rating\": 4.8,\n            \"views\": 1020,\n            \"category\": {\n                \"id\": 136,\n                \"name\": \"Psychology\",\n                \"createdAt\": \"22.09.2023\"\n            },\n            \"createdAt\": \"12.01.2025\"\n        },\n        {\n            \"id\": 40,\n            \"title\": \"Green Energy Innovations\",\n            \"description\": \"Trends in renewable energy.\",\n            \"rating\": 4.7,\n            \"views\": 1020,\n            \"category\": {\n                \"id\": 127,\n                \"name\": \"Green Technology\",\n                \"createdAt\": \"10.03.2024\"\n            },\n            \"createdAt\": \"05.12.2024\"\n        },\n        {\n            \"id\": 32,\n            \"title\": \"The Rise of Esports\",\n            \"description\": \"How competitive gaming is reshaping sports.\",\n            \"rating\": 4.8,\n            \"views\": 1020,\n            \"category\": {\n                \"id\": 6,\n                \"name\": \"Entertainment\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"20.11.2024\"\n        },\n        {\n            \"id\": 51,\n            \"title\": \"Future of Transportation\",\n            \"description\": \"What comes after electric cars.\",\n            \"rating\": 4.8,\n            \"views\": 1020,\n            \"category\": {\n                \"id\": 140,\n                \"name\": \"Transportation\",\n                \"createdAt\": \"09.09.2023\"\n            },\n            \"createdAt\": \"22.01.2025\"\n        },\n        {\n            \"id\": 22,\n            \"title\": \"Climate Change Solutions\",\n            \"description\": \"Practical steps to combat global warming.\",\n            \"rating\": 4.7,\n            \"views\": 1020,\n            \"category\": {\n                \"id\": 131,\n                \"name\": \"Climate Change\",\n                \"createdAt\": \"05.09.2023\"\n            },\n            \"createdAt\": \"25.12.2024\"\n        },\n        {\n            \"id\": 17,\n            \"title\": \"Exploring the Cosmos\",\n            \"description\": \"Advancements in astrophysics research.\",\n            \"rating\": 4.7,\n            \"views\": 1010,\n            \"category\": {\n                \"id\": 132,\n                \"name\": \"Astrophysics\",\n                \"createdAt\": \"12.02.2024\"\n            },\n            \"createdAt\": \"20.10.2024\"\n        },\n        {\n            \"id\": 38,\n            \"title\": \"Game Development Tools\",\n            \"description\": \"Best tools for building games.\",\n            \"rating\": 4.8,\n            \"views\": 1010,\n            \"category\": {\n                \"id\": 133,\n                \"name\": \"Game Development\",\n                \"createdAt\": \"21.10.2023\"\n            },\n            \"createdAt\": \"30.12.2024\"\n        },\n        {\n            \"id\": 28,\n            \"title\": \"Privacy Concerns in the Digital Age\",\n            \"description\": \"How to protect your online information.\",\n            \"rating\": 4.8,\n            \"views\": 990,\n            \"category\": {\n                \"id\": 154,\n                \"name\": \"Digital Privacy\",\n                \"createdAt\": \"05.04.2024\"\n            },\n            \"createdAt\": \"15.01.2025\"\n        },\n        {\n            \"id\": 54,\n            \"title\": \"Wearable Technology Trends\",\n            \"description\": \"The evolution of wearable devices.\",\n            \"rating\": 4.8,\n            \"views\": 990,\n            \"category\": {\n                \"id\": 124,\n                \"name\": \"Wearable Technology\",\n                \"createdAt\": \"30.11.2023\"\n            },\n            \"createdAt\": \"10.01.2025\"\n        },\n        {\n            \"id\": 34,\n            \"title\": \"Ethics in AI Development\",\n            \"description\": \"Balancing innovation with responsibility.\",\n            \"rating\": 4.9,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 149,\n                \"name\": \"Ethics in Tech\",\n                \"createdAt\": \"18.11.2023\"\n            },\n            \"createdAt\": \"22.01.2025\"\n        },\n        {\n            \"id\": 39,\n            \"title\": \"Gene Editing for Cures\",\n            \"description\": \"How CRISPR is transforming medicine.\",\n            \"rating\": 4.9,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 145,\n                \"name\": \"Gene Editing\",\n                \"createdAt\": \"12.03.2024\"\n            },\n            \"createdAt\": \"18.01.2025\"\n        },\n        {\n            \"id\": 47,\n            \"title\": \"Advancements in Nanotechnology\",\n            \"description\": \"Tiny tech with big potential.\",\n            \"rating\": 4.9,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 143,\n                \"name\": \"Nanotechnology\",\n                \"createdAt\": \"15.04.2024\"\n            },\n            \"createdAt\": \"15.01.2025\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Mental Health Awareness\",\n            \"description\": \"Resources and tips to manage mental health.\",\n            \"rating\": 4.5,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 2,\n                \"name\": \"Health\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 12,\n            \"title\": \"Ethical Challenges in AI\",\n            \"description\": \"A deep dive into ethical issues of AI systems.\",\n            \"rating\": 4.9,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 153,\n                \"name\": \"AI Ethics\",\n                \"createdAt\": \"02.12.2023\"\n            },\n            \"createdAt\": \"20.01.2025\"\n        },\n        {\n            \"id\": 19,\n            \"title\": \"Big Data Analytics\",\n            \"description\": \"Unlocking insights through data analysis.\",\n            \"rating\": 4.5,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 114,\n                \"name\": \"Big Data\",\n                \"createdAt\": \"25.07.2023\"\n            },\n            \"createdAt\": \"12.12.2024\"\n        },\n        {\n            \"id\": 25,\n            \"title\": \"Cybersecurity in IoT\",\n            \"description\": \"Protecting connected devices.\",\n            \"rating\": 4.9,\n            \"views\": 970,\n            \"category\": {\n                \"id\": 111,\n                \"name\": \"Cybersecurity\",\n                \"createdAt\": \"30.08.2023\"\n            },\n            \"createdAt\": \"10.12.2024\"\n        },\n        {\n            \"id\": 50,\n            \"title\": \"Renewable Energy Sources\",\n            \"description\": \"Exploring alternatives to fossil fuels.\",\n            \"rating\": 4.7,\n            \"views\": 970,\n            \"category\": {\n                \"id\": 109,\n                \"name\": \"Renewable Energy\",\n                \"createdAt\": \"12.09.2023\"\n            },\n            \"createdAt\": \"20.01.2025\"\n        },\n        {\n            \"id\": 45,\n            \"title\": \"Marine Life Conservation\",\n            \"description\": \"Efforts to protect our oceans.\",\n            \"rating\": 4.8,\n            \"views\": 950,\n            \"category\": {\n                \"id\": 130,\n                \"name\": \"Marine Biology\",\n                \"createdAt\": \"15.01.2024\"\n            },\n            \"createdAt\": \"05.01.2025\"\n        },\n        {\n            \"id\": 36,\n            \"title\": \"FinTech Revolution\",\n            \"description\": \"How technology is reshaping finance.\",\n            \"rating\": 4.8,\n            \"views\": 950,\n            \"category\": {\n                \"id\": 123,\n                \"name\": \"FinTech\",\n                \"createdAt\": \"05.03.2024\"\n            },\n            \"createdAt\": \"15.01.2025\"\n        },\n        {\n            \"id\": 53,\n            \"title\": \"Smart Homes of the Future\",\n            \"description\": \"How IoT is changing our homes.\",\n            \"rating\": 4.7,\n            \"views\": 930,\n            \"category\": {\n                \"id\": 125,\n                \"name\": \"Smart Homes\",\n                \"createdAt\": \"20.01.2024\"\n            },\n            \"createdAt\": \"20.01.2025\"\n        },\n        {\n            \"id\": 29,\n            \"title\": \"E-commerce Trends of 2025\",\n            \"description\": \"What to expect in the e-commerce world.\",\n            \"rating\": 4.5,\n            \"views\": 930,\n            \"category\": {\n                \"id\": 117,\n                \"name\": \"E-commerce\",\n                \"createdAt\": \"01.05.2024\"\n            },\n            \"createdAt\": \"01.01.2025\"\n        },\n        {\n            \"id\": 35,\n            \"title\": \"Personal Finance 101\",\n            \"description\": \"Building a strong financial foundation.\",\n            \"rating\": 4.7,\n            \"views\": 930,\n            \"category\": {\n                \"id\": 8,\n                \"name\": \"Finance\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"05.01.2025\"\n        },\n        {\n            \"id\": 55,\n            \"title\": \"Web Development Frameworks\",\n            \"description\": \"Top frameworks for modern web apps.\",\n            \"rating\": 4.7,\n            \"views\": 920,\n            \"category\": {\n                \"id\": 151,\n                \"name\": \"Web Development\",\n                \"createdAt\": \"09.10.2023\"\n            },\n            \"createdAt\": \"18.01.2025\"\n        },\n        {\n            \"id\": 21,\n            \"title\": \"Blockchain Beyond Cryptocurrency\",\n            \"description\": \"Exploring blockchain applications.\",\n            \"rating\": 4.4,\n            \"views\": 920,\n            \"category\": {\n                \"id\": 110,\n                \"name\": \"Blockchain Technology\",\n                \"createdAt\": \"05.01.2024\"\n            },\n            \"createdAt\": \"01.12.2024\"\n        },\n        {\n            \"id\": 31,\n            \"title\": \"Effective Online Learning\",\n            \"description\": \"Tips to succeed in virtual education.\",\n            \"rating\": 4.7,\n            \"views\": 920,\n            \"category\": {\n                \"id\": 4,\n                \"name\": \"Education\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"20.01.2025\"\n        },\n        {\n            \"id\": 26,\n            \"title\": \"Data Science for Beginners\",\n            \"description\": \"An introduction to the world of data science.\",\n            \"rating\": 4.7,\n            \"views\": 920,\n            \"category\": {\n                \"id\": 152,\n                \"name\": \"Data Science\",\n                \"createdAt\": \"22.08.2023\"\n            },\n            \"createdAt\": \"05.01.2025\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"Cryptocurrency Basics\",\n            \"description\": \"An introduction to cryptocurrency investing.\",\n            \"rating\": 4.3,\n            \"views\": 910,\n            \"category\": {\n                \"id\": 8,\n                \"name\": \"Finance\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 42,\n            \"title\": \"Hydrology and Water Conservation\",\n            \"description\": \"Managing water resources efficiently.\",\n            \"rating\": 4.7,\n            \"views\": 910,\n            \"category\": {\n                \"id\": 146,\n                \"name\": \"Hydrology\",\n                \"createdAt\": \"27.08.2023\"\n            },\n            \"createdAt\": \"10.01.2025\"\n        },\n        {\n            \"id\": 46,\n            \"title\": \"Building Mobile Apps\",\n            \"description\": \"Best practices for mobile development.\",\n            \"rating\": 4.7,\n            \"views\": 900,\n            \"category\": {\n                \"id\": 150,\n                \"name\": \"Mobile Development\",\n                \"createdAt\": \"20.02.2024\"\n            },\n            \"createdAt\": \"28.12.2024\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"Sustainable Agriculture Practices\",\n            \"description\": \"Exploring eco-friendly farming techniques.\",\n            \"rating\": 4.6,\n            \"views\": 890,\n            \"category\": {\n                \"id\": 138,\n                \"name\": \"Agriculture\",\n                \"createdAt\": \"19.08.2023\"\n            },\n            \"createdAt\": \"10.12.2024\"\n        },\n        {\n            \"id\": 41,\n            \"title\": \"Healthy Habits for a Balanced Life\",\n            \"description\": \"How to create a healthier lifestyle.\",\n            \"rating\": 4.5,\n            \"views\": 890,\n            \"category\": {\n                \"id\": 2,\n                \"name\": \"Health\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"25.01.2025\"\n        },\n        {\n            \"id\": 23,\n            \"title\": \"The Future of Cloud Computing\",\n            \"description\": \"Trends shaping the cloud industry.\",\n            \"rating\": 4.8,\n            \"views\": 890,\n            \"category\": {\n                \"id\": 118,\n                \"name\": \"Cloud Computing\",\n                \"createdAt\": \"12.11.2023\"\n            },\n            \"createdAt\": \"15.11.2024\"\n        },\n        {\n            \"id\": 24,\n            \"title\": \"Content Creation Tools of 2024\",\n            \"description\": \"Top tools for creators this year.\",\n            \"rating\": 4.6,\n            \"views\": 870,\n            \"category\": {\n                \"id\": 135,\n                \"name\": \"Content Creation\",\n                \"createdAt\": \"07.11.2023\"\n            },\n            \"createdAt\": \"10.01.2025\"\n        },\n        {\n            \"id\": 27,\n            \"title\": \"Digital Marketing Strategies\",\n            \"description\": \"Boost your business with proven methods.\",\n            \"rating\": 4.6,\n            \"views\": 870,\n            \"category\": {\n                \"id\": 108,\n                \"name\": \"Digital Marketing\",\n                \"createdAt\": \"20.11.2023\"\n            },\n            \"createdAt\": \"20.12.2024\"\n        },\n        {\n            \"id\": 30,\n            \"title\": \"Innovations in EdTech\",\n            \"description\": \"Technologies transforming education.\",\n            \"rating\": 4.6,\n            \"views\": 870,\n            \"category\": {\n                \"id\": 122,\n                \"name\": \"EdTech\",\n                \"createdAt\": \"18.10.2023\"\n            },\n            \"createdAt\": \"10.01.2025\"\n        },\n        {\n            \"id\": 44,\n            \"title\": \"Logistics in a Post-COVID World\",\n            \"description\": \"How supply chains are adapting.\",\n            \"rating\": 4.5,\n            \"views\": 870,\n            \"category\": {\n                \"id\": 139,\n                \"name\": \"Logistics\",\n                \"createdAt\": \"03.10.2023\"\n            },\n            \"createdAt\": \"22.12.2024\"\n        },\n        {\n            \"id\": 43,\n            \"title\": \"Balancing Work and Life\",\n            \"description\": \"Strategies for achieving harmony.\",\n            \"rating\": 4.6,\n            \"views\": 850,\n            \"category\": {\n                \"id\": 10,\n                \"name\": \"Lifestyle\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"20.01.2025\"\n        },\n        {\n            \"id\": 49,\n            \"title\": \"Quantum Computing Explained\",\n            \"description\": \"How quantum computing works.\",\n            \"rating\": 4.6,\n            \"views\": 850,\n            \"category\": {\n                \"id\": 113,\n                \"name\": \"Quantum Computing\",\n                \"createdAt\": \"01.10.2023\"\n            },\n            \"createdAt\": \"10.12.2024\"\n        },\n        {\n            \"id\": 18,\n            \"title\": \"Augmented Reality in Retail\",\n            \"description\": \"How AR is changing the shopping experience.\",\n            \"rating\": 4.6,\n            \"views\": 850,\n            \"category\": {\n                \"id\": 120,\n                \"name\": \"Augmented Reality\",\n                \"createdAt\": \"25.02.2024\"\n            },\n            \"createdAt\": \"30.11.2024\"\n        },\n        {\n            \"id\": 33,\n            \"title\": \"Environmental Science Breakthroughs\",\n            \"description\": \"Key discoveries of the past year.\",\n            \"rating\": 4.6,\n            \"views\": 850,\n            \"category\": {\n                \"id\": 137,\n                \"name\": \"Environmental Science\",\n                \"createdAt\": \"30.01.2024\"\n            },\n            \"createdAt\": \"18.12.2024\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 50,\n        \"sort\": {\n            \"empty\": false,\n            \"unsorted\": false,\n            \"sorted\": true\n        },\n        \"offset\": 0,\n        \"unpaged\": false,\n        \"paged\": true\n    },\n    \"last\": false,\n    \"totalPages\": 2,\n    \"totalElements\": 55,\n    \"first\": true,\n    \"size\": 50,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"unsorted\": false,\n        \"sorted\": true\n    },\n    \"numberOfElements\": 50,\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Get topic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/topic/{{topic_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"topic",
+								"{{topic_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Get topic",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic/10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"10"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:13:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 10,\n    \"title\": \"Work-Life Balance\",\n    \"description\": \"Strategies to manage work and personal life.\",\n    \"rating\": 4.4,\n    \"views\": 830,\n    \"category\": {\n        \"id\": 10,\n        \"name\": \"Lifestyle\",\n        \"createdAt\": \"23.01.2025\"\n    },\n    \"createdAt\": \"23.01.2025\"\n}"
+						},
+						{
+							"name": "404 - Topic not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic/1090",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"1090"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:14:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Filter topic by title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/topic/search?title=AI&page=0&sort=views,desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"topic",
+								"search"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "AI",
+									"description": "String filter name"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "50",
+									"description": "Sort by id, views, createdAt [DESC] and id [ASC]",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "views,desc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Filter topic by title",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic/search?title=tech&page=0&sort=views,desc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"search"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "tech",
+											"description": "String filter name"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "50",
+											"description": "Sort by id, views, createdAt [DESC] and id [ASC]",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "views,desc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:20:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 20,\n            \"title\": \"Biotechnology in Cancer Treatment\",\n            \"description\": \"Innovations in biotech for oncology.\",\n            \"rating\": 4.8,\n            \"views\": 1100,\n            \"category\": {\n                \"id\": 115,\n                \"name\": \"Biotechnology\",\n                \"createdAt\": \"10.04.2024\"\n            },\n            \"createdAt\": \"18.12.2024\"\n        },\n        {\n            \"id\": 54,\n            \"title\": \"Wearable Technology Trends\",\n            \"description\": \"The evolution of wearable devices.\",\n            \"rating\": 4.8,\n            \"views\": 990,\n            \"category\": {\n                \"id\": 124,\n                \"name\": \"Wearable Technology\",\n                \"createdAt\": \"30.11.2023\"\n            },\n            \"createdAt\": \"10.01.2025\"\n        },\n        {\n            \"id\": 47,\n            \"title\": \"Advancements in Nanotechnology\",\n            \"description\": \"Tiny tech with big potential.\",\n            \"rating\": 4.9,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 143,\n                \"name\": \"Nanotechnology\",\n                \"createdAt\": \"15.04.2024\"\n            },\n            \"createdAt\": \"15.01.2025\"\n        },\n        {\n            \"id\": 36,\n            \"title\": \"FinTech Revolution\",\n            \"description\": \"How technology is reshaping finance.\",\n            \"rating\": 4.8,\n            \"views\": 950,\n            \"category\": {\n                \"id\": 123,\n                \"name\": \"FinTech\",\n                \"createdAt\": \"05.03.2024\"\n            },\n            \"createdAt\": \"15.01.2025\"\n        },\n        {\n            \"id\": 30,\n            \"title\": \"Innovations in EdTech\",\n            \"description\": \"Technologies transforming education.\",\n            \"rating\": 4.6,\n            \"views\": 870,\n            \"category\": {\n                \"id\": 122,\n                \"name\": \"EdTech\",\n                \"createdAt\": \"18.10.2023\"\n            },\n            \"createdAt\": \"10.01.2025\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 50,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 5,\n    \"first\": true,\n    \"size\": 50,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"numberOfElements\": 5,\n    \"empty\": false\n}"
+						},
+						{
+							"name": "400 - Filter topic by title",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic/search?page=0&sort=views,desc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"search"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "tech",
+											"description": "String filter name",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "50",
+											"description": "Sort by id, views, createdAt [DESC] and id [ASC]",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "views,desc"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:23:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Error interno en el servidor. Inténtelo nuevamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Filter topic by category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/topic/category/2?page=0&size=5&sort=views,desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"topic",
+								"category",
+								"2"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "sort",
+									"value": "views,desc",
+									"description": "Sort by id, views, createdAt [DESC] and id [ASC]"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Filter topic by title Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic/category/2?page=0&sort=views,desc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"category",
+										"2"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "50",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "views,desc",
+											"description": "Sort by id, views, createdAt [DESC] and id [ASC]"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:25:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 2,\n            \"title\": \"Mental Health Awareness\",\n            \"description\": \"Resources and tips to manage mental health.\",\n            \"rating\": 4.5,\n            \"views\": 980,\n            \"category\": {\n                \"id\": 2,\n                \"name\": \"Health\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"23.01.2025\"\n        },\n        {\n            \"id\": 41,\n            \"title\": \"Healthy Habits for a Balanced Life\",\n            \"description\": \"How to create a healthier lifestyle.\",\n            \"rating\": 4.5,\n            \"views\": 890,\n            \"category\": {\n                \"id\": 2,\n                \"name\": \"Health\",\n                \"createdAt\": \"23.01.2025\"\n            },\n            \"createdAt\": \"25.01.2025\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 20,\n        \"sort\": {\n            \"empty\": false,\n            \"unsorted\": false,\n            \"sorted\": true\n        },\n        \"offset\": 0,\n        \"unpaged\": false,\n        \"paged\": true\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 2,\n    \"first\": true,\n    \"size\": 20,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"unsorted\": false,\n        \"sorted\": true\n    },\n    \"numberOfElements\": 2,\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Update topic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Lorem Ipsum update\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 4.3,\n    \"views\": 699,\n    \"categoryId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/topic/{{topic_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"topic",
+								"{{topic_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Update topic",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lorem Ipsum update\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 4.3,\n    \"views\": 699,\n    \"categoryId\": 7\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic/56",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"56"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:35:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 56,\n    \"title\": \"Lorem Ipsum update\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 4.3,\n    \"views\": 699,\n    \"category\": {\n        \"id\": 7,\n        \"name\": \"Travel\",\n        \"createdAt\": \"23.01.2025\"\n    },\n    \"createdAt\": \"23.01.2025\"\n}"
+						},
+						{
+							"name": "400 - Category not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lorem Ipsum update\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 4.3,\n    \"views\": 699,\n    \"categoryId\": 700\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic/56",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"56"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:36:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Category not found by id 700\"\n}"
+						},
+						{
+							"name": "400 - Payload not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic/56",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"56"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:36:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"body\",\n    \"message\": \"Payload not found\"\n}"
+						},
+						{
+							"name": "400 - Topic not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lorem Ipsum update\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 4.3,\n    \"views\": 699,\n    \"categoryId\": 7\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/topic/560",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"560"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:37:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Topic not found by id 560\"\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/topic/{{topic_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"topic",
+								"{{topic_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Delete topic",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic/56",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"56"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:40:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 56,\n    \"title\": \"Lorem Ipsum update\",\n    \"description\": \"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.\",\n    \"rating\": 4.3,\n    \"views\": 699,\n    \"category\": {\n        \"id\": 7,\n        \"name\": \"Travel\",\n        \"createdAt\": \"23.01.2025\"\n    },\n    \"createdAt\": \"23.01.2025\"\n}"
+						},
+						{
+							"name": "400 - Topic not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/topic/56",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"topic",
+										"56"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 03:40:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"field\": \"error\",\n    \"message\": \"Topic not found by id 56\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api",
+			"disabled": true
+		},
+		{
+			"key": "cagory_id",
+			"value": "0",
+			"disabled": true
+		},
+		{
+			"key": "topic_id",
+			"value": "0",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

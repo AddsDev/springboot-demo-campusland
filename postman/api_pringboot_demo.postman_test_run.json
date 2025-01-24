@@ -1,0 +1,633 @@
+{
+	"id": "ecde471e-99be-453e-9474-5711bd7029ed",
+	"name": "API Springboot demo",
+	"timestamp": "2025-01-24T20:58:31.322Z",
+	"collection_id": "41280200-c7f8940d-f2aa-4d15-8f84-c43bc8cce894",
+	"folder_id": 0,
+	"environment_id": "41280200-6dc9f4b3-b114-4d4c-8605-966afb65d05e",
+	"totalPass": 65,
+	"delay": "6",
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-01-24T20:58:29.164Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "4fab4e69-dadf-4ee3-a903-902c2f863ffc",
+			"name": "New Category",
+			"url": "http://localhost:8080/api/category",
+			"time": 5,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				21,
+				8,
+				5,
+				6,
+				5
+			],
+			"allTests": [
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				}
+			]
+		},
+		{
+			"id": "7a414d30-211c-49c4-a85c-a31f7ce3f907",
+			"name": "Get categories",
+			"url": "http://localhost:8080/api/category?page=0&size=3&sort=name,asc",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				12,
+				7,
+				5,
+				5,
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "8ddf7ed3-15be-4eb2-97c0-4be4d9bbc6c5",
+			"name": "Get category",
+			"url": "http://localhost:8080/api/category/67",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				6,
+				4,
+				4,
+				4,
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "abe9be85-acae-42d4-96cd-d03a2abdcf3c",
+			"name": "Filter category by name",
+			"url": "http://localhost:8080/api/category/search?name=Technology&page=0&size=5&sort=name",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				9,
+				8,
+				5,
+				9,
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "73cbce1d-f50f-443a-ba7d-41db41a37c44",
+			"name": "Update category",
+			"url": "http://localhost:8080/api/category/67",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful PUT request": true
+			},
+			"testPassFailCounts": {
+				"Successful PUT request": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				9,
+				10,
+				6,
+				6,
+				7
+			],
+			"allTests": [
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				}
+			]
+		},
+		{
+			"id": "a57d8ab0-7c85-40fa-99d6-51780ac0db4d",
+			"name": "Delete category",
+			"url": "http://localhost:8080/api/category/67",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful DELETE request": true
+			},
+			"testPassFailCounts": {
+				"Successful DELETE request": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				9,
+				13,
+				7,
+				7,
+				6
+			],
+			"allTests": [
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				}
+			]
+		},
+		{
+			"id": "10dbdf8e-88ae-4f37-9dba-a3198cad0a29",
+			"name": "New Topic",
+			"url": "http://localhost:8080/api/topic",
+			"time": 7,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				15,
+				12,
+				6,
+				6,
+				7
+			],
+			"allTests": [
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				},
+				{
+					"Successful POST request": true
+				}
+			]
+		},
+		{
+			"id": "5a12b247-3d17-4dae-9646-fec268f841c4",
+			"name": "Get topics",
+			"url": "http://localhost:8080/api/topic?page=0&size=3&sort=views,desc",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				8,
+				13,
+				7,
+				8,
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "900efe73-09fc-4971-bb88-e8342cc449d8",
+			"name": "Get topic",
+			"url": "http://localhost:8080/api/topic/19",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				5,
+				5,
+				4,
+				4,
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "5b13e435-8583-47dc-a728-6b385a74ae8e",
+			"name": "Filter topic by title",
+			"url": "http://localhost:8080/api/topic/search?title=AI&page=0&sort=views,desc",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				6,
+				5,
+				5,
+				5,
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "ae554321-9b58-46eb-8177-57f54c2a14ca",
+			"name": "Filter topic by category",
+			"url": "http://localhost:8080/api/topic/category/2?page=0&size=5&sort=views,desc",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				7,
+				6,
+				5,
+				5,
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f7160ed2-24c0-4436-a6ea-598bef81c68c",
+			"name": "Update topic",
+			"url": "http://localhost:8080/api/topic/19",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful PUT request": true
+			},
+			"testPassFailCounts": {
+				"Successful PUT request": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				11,
+				8,
+				9,
+				8,
+				8
+			],
+			"allTests": [
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				},
+				{
+					"Successful PUT request": true
+				}
+			]
+		},
+		{
+			"id": "2a975e22-a03e-4829-aa23-948e5b2c5ecc",
+			"name": "New Request",
+			"url": "http://localhost:8080/api/topic/19",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful DELETE request": true
+			},
+			"testPassFailCounts": {
+				"Successful DELETE request": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				10,
+				8,
+				6,
+				7,
+				6
+			],
+			"allTests": [
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				},
+				{
+					"Successful DELETE request": true
+				}
+			]
+		}
+	],
+	"count": 5,
+	"totalTime": 463,
+	"collection": {
+		"requests": [
+			{
+				"id": "4fab4e69-dadf-4ee3-a903-902c2f863ffc",
+				"method": "POST"
+			},
+			{
+				"id": "7a414d30-211c-49c4-a85c-a31f7ce3f907",
+				"method": "GET"
+			},
+			{
+				"id": "8ddf7ed3-15be-4eb2-97c0-4be4d9bbc6c5",
+				"method": "GET"
+			},
+			{
+				"id": "abe9be85-acae-42d4-96cd-d03a2abdcf3c",
+				"method": "GET"
+			},
+			{
+				"id": "73cbce1d-f50f-443a-ba7d-41db41a37c44",
+				"method": "PUT"
+			},
+			{
+				"id": "a57d8ab0-7c85-40fa-99d6-51780ac0db4d",
+				"method": "DELETE"
+			},
+			{
+				"id": "10dbdf8e-88ae-4f37-9dba-a3198cad0a29",
+				"method": "POST"
+			},
+			{
+				"id": "5a12b247-3d17-4dae-9646-fec268f841c4",
+				"method": "GET"
+			},
+			{
+				"id": "900efe73-09fc-4971-bb88-e8342cc449d8",
+				"method": "GET"
+			},
+			{
+				"id": "5b13e435-8583-47dc-a728-6b385a74ae8e",
+				"method": "GET"
+			},
+			{
+				"id": "ae554321-9b58-46eb-8177-57f54c2a14ca",
+				"method": "GET"
+			},
+			{
+				"id": "f7160ed2-24c0-4436-a6ea-598bef81c68c",
+				"method": "PUT"
+			},
+			{
+				"id": "2a975e22-a03e-4829-aa23-948e5b2c5ecc",
+				"method": "DELETE"
+			}
+		]
+	}
+}
