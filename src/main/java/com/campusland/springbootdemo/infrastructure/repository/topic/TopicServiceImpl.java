@@ -6,6 +6,7 @@ import com.campusland.springbootdemo.domain.dto.topic.TopicResponse;
 import com.campusland.springbootdemo.domain.entity.Category;
 import com.campusland.springbootdemo.domain.entity.Topic;
 import com.campusland.springbootdemo.domain.mapper.TopicMapper;
+import com.campusland.springbootdemo.infrastructure.error.TopicNotFoundException;
 import com.campusland.springbootdemo.infrastructure.repository.category.CategoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -101,7 +102,7 @@ public class TopicServiceImpl implements TopicService {
     private Category findCategoryById(Long id) {
         var response = categoryRepository.findById(id);
         if (response.isEmpty()) {
-            throw new RuntimeException("Category not found by id " + id);
+            throw new TopicNotFoundException("Category not found by id " + id);
         }
         return response.get();
     }
