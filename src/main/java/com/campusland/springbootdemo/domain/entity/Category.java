@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -15,6 +16,9 @@ public class Category {
 
     @Column(nullable = false, length = 50)
     private String name;
+
+    @OneToMany(targetEntity = Topic.class ,mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Topic> topics;
 
     @ColumnDefault("now()")
     @Column(name = "created_at", nullable = false, updatable = false)
