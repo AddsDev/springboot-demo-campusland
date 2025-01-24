@@ -21,6 +21,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.notFound().build();
     }
 
+    @ExceptionHandler(TopicNotFoundException.class)
+    public ResponseEntity<FieldError> handleTopicNotFoundException() {
+        return ResponseEntity.notFound().build();
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleFieldsException(MethodArgumentNotValidException e) {
         List<FieldError> fieldErrors = e.getFieldErrors().stream()
