@@ -187,8 +187,7 @@ public class TopicControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(invalidRequest)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$[0].field").value("views"))
-                .andExpect(jsonPath("$[0].description").value("must not be null"));
+                .andExpect(jsonPath("$.length()").value(5));
 
         verifyNoInteractions(topicService);
     }

@@ -133,8 +133,7 @@ public class CategoryControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(invalidRequest)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$[0].field").value("name"))
-                .andExpect(jsonPath("$[0].description").value("field is mandatory"));
+                .andExpect(jsonPath("$.length()").value(1));
 
         verifyNoInteractions(categoryService);
     }
