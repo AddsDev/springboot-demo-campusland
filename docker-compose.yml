@@ -30,11 +30,6 @@ services:
     container_name: spring-demo-app-container
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      DB_HOST: 'mysql-spring-crud'
-      DB_PORT: 3306
-      DB_NAME: springboot_demo_db
-      DB_USER: db_user
-      DB_PASSWORD: db_password
     networks:
       - spring_demo_network
     ports:
